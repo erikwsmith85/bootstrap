@@ -9,10 +9,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <!-- Bootstrap CSS -->
+    <!-- build:css css/main.css-->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
+    <!-- endbuild -->
 
     <title>Ristorante Con Fusion</title>
 
@@ -39,8 +41,14 @@
                 <li class="nav-item"> <a class="nav-link" href="./contactus.html"><span class ="fa fa-address-card fa-lg"></span> Contact</a></li>
 
               </ul>
-            <span class="navbar-text">
+            <!-- <span class="navbar-text">
                 <a data-toggle="modal" data-target="#loginModal">
+                    <span class="fa fa-sign-in"></span> Login
+                </a>
+            </span> -->
+
+            <span class="navbar-text">
+                <a id="loginButton">
                     <span class="fa fa-sign-in"></span> Login
                 </a>
             </span>
@@ -49,7 +57,7 @@
     </div>
 </nav>
 
-<div id="loginModal" class="modal fade" role="dialog">
+<!-- <div id="loginModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg" role="content">
       <div class="modal-content">
           <div class="modal-header">
@@ -91,6 +99,49 @@
           </div>
       </div>
   </div>
+</div> -->
+<div id="loginModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" role="content">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title">Login</h4>
+              <button id="loginCloseButton" type="button" class="close" name="dismissModal">
+                  &times;
+              </button>
+
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-row">
+                <div class="form-group col-sm-4">
+                    <label for="exampleInputEmail" class="sr-only"></label>
+                    <input type="email" class="form-control" id="exampleInputEmail" name="exampleInputEmail"
+                        placeholder="Enter email">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="exampleInputPassword" class="sr-only"></label>
+                    <input type="password" class="form-control" id="exampleInputPassword" name="exampleInputPassword"
+                        placeholder="Enter password">
+                </div>
+                <div class="col-sm-auto">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+                      <label for="rememberMe" class="form-check-label">Remember Me</label>
+                    </div>
+                </div>
+              </div>
+
+
+                <div class="form-row">
+                        <button id = "cancelLoginButton" type="button" class="btn btn-secondary btn-sm ml-auto" >Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm ml-1">Sign In</button>
+                </div>
+
+
+            </form>
+          </div>
+      </div>
+  </div>
 </div>
 
     <header class = "jumbotron">
@@ -109,10 +160,16 @@
                     data-placement="bottom"
                     href="#reserveform">Reserve Table</a>
                 </div> -->
-                <div class = "col-12 col-sm align-self-center">
+                <!-- <div class = "col-12 col-sm align-self-center">
                     <a role="button" class="btn btn-block nav-link btn-warning"
                     data-toggle="modal" data-target="#reservation">
                     Reserve Table</a>
+                </div> -->
+                <div class = "col-12 col-sm align-self-center">
+                    <a id="openReservationModal" role="button"
+                    class="btn btn-block nav-link btn-warning">
+                    Reserve Table
+                    </a>
                 </div>
             </div>
         </div>
@@ -275,9 +332,13 @@
         <div id="reservation" class="modal fade" role="dialog">
           <div class="modal-dialog modal-lg" role="content">
               <div class="modal-content">
-                  <div class="modal-header">
+                  <div class="modal-header" >
                       <h4 class="modal-title">Reserve a Table</h4>
-                      <button type="button" class="close" data-dismiss="modal" name="dismissModal">
+                      <!-- <button type="button" class="close" data-dismiss="modal" name="dismissModal">
+                          &times;
+                      </button> -->
+                      <button id="closeReservationButton" type="button" class="close"
+                          name="dismissModal">
                           &times;
                       </button>
 
@@ -318,8 +379,8 @@
 
                         <div class="form-group row">
                             <div class="offset-sm-3 col-sm-9">
-                                <button type="button" class="btn btn-secondary btn-md ml-auto" data-dismiss="modal">Cancel</button> &nbsp;
-
+                                <!-- <button type="button" class="btn btn-secondary btn-md ml-auto" data-dismiss="modal">Cancel</button> &nbsp; -->
+                                <button id="cancelReservationButton"type="button" class="btn btn-secondary btn-md ml-auto" >Cancel</button> &nbsp;
                                 <button type="submit" class="btn btn-primary btn-md ml-1">Reserve</button>
                             </div>
                         </div>
@@ -374,37 +435,20 @@
     </footer>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+
+    <!-- build:js scripts/main.js -->
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
     <!-- <script>
       $(document).ready(function() {
           $('[data-toggle="tooltip"]').tooltip();
       })
     </script> -->
-    <script>
-        $(document).ready(function(){
-            $('#myCarousel').carousel({interval: 2000});
-            // $('#carousel-pause').click(function(){
-            //     $('#myCarousel').carousel('pause');
-            // });
-            // $('#carousel-play').click(function(){
-            //     $('#myCarousel').carousel('cycle');
-            // });
-            $('#carouselButton').click(function(){
-                if($('#carouselButton').children('span').hasClass('fa-pause')) {
-                  $('#myCarousel').carousel('pause');
-                  $('#carouselButton').children('span').removeClass('fa-pause');
-                  $('#carouselButton').children('span').addClass('fa-play');
-                }else if ($('#carouselButton').children('span').hasClass('fa-play')){
-                  $('#myCarousel').carousel('cycle');
-                  $('#carouselButton').children('span').removeClass('fa-play');
-                  $('#carouselButton').children('span').addClass('fa-pause');
-                }
-            });
 
-        })
-    </script>
 
 
 </body>
