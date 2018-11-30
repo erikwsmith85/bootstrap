@@ -3,9 +3,7 @@
 module.exports = function(grunt) {
 
   require('time-grunt')(grunt);
-  // require('jit-grunt')(grunt, {
-  //   useminPrepare:  'grunt-usemin'
-  // });
+  // require('jit-grunt')(grunt);
   require('jit-grunt')(grunt, {
     useminPrepare:  'grunt-usemin'
   });
@@ -134,7 +132,7 @@ module.exports = function(grunt) {
                 length: 20
             },
             release: {
-                flies: [{
+                files: [{
                       src: [
                           'dist/scripts/*.js',
                           'dist/css/*.css'
